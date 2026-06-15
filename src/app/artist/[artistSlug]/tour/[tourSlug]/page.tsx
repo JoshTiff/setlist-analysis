@@ -1,5 +1,9 @@
 import { notFound } from "next/navigation";
 
+import { SongHeatmap } from "@/components/charts/SongHeatmap";
+import { SongPositionChart } from "@/components/charts/SongPositionChart";
+import { SetlistChangesSummary } from "@/components/setlists/SetlistChangesSummary";
+import { SongStatsTable } from "@/components/setlists/SongStatsTable";
 import { getCachedTourDashboardData } from "@/lib/supabase/readTourData";
 
 import styles from "./TourDashboard.module.css";
@@ -22,8 +26,6 @@ export default async function TourPage({ params }: TourPageProps) {
 
   const { artist, tour, refreshedAt, analysis } = dashboardData;
 
-  const topSongs = analysis.songStats.slice(0, 12);
-  const recentChanges = analysis.changes.slice(-5).reverse();
   const coreSongs = analysis.songStats.filter((song) => song.isCore);
   const rotatingSongs = analysis.songStats.filter((song) => song.isRotating);
 
@@ -74,118 +76,44 @@ export default async function TourPage({ params }: TourPageProps) {
 
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
-          <h2>Top Songs</h2>
-          <p>Most frequently played songs on this cached tour.</p>
+          <h2>Song Heatmap</h2>
+          <p>
+            Shows are columns. Songs are rows. Filled cells show where a song
+            appeared in the setlist.
+          </p>
         </div>
 
-        {topSongs.length > 0 ? (
-          <div className={styles.tableWrapper}>
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  <th>Song</th>
-                  <th>Shows</th>
-                  <th>Frequency</th>
-                  <th>Avg. Position</th>
-                  <th>Openers</th>
-                  <th>Closers</th>
-                  <th>Encores</th>
-                </tr>
-              </thead>
-              <tbody>
-                {topSongs.map((song) => (
-                  <tr key={song.songSlug}>
-                    <td>{song.songName}</td>
-                    <td>
-                      {song.showCount}/{song.totalShows}
-                    </td>
-                    <td>{formatPercent(song.frequency)}</td>
-                    <td>
-                      {song.averagePosition === null
-                        ? "—"
-                        : song.averagePosition.toFixed(1)}
-                    </td>
-                    <td>{song.openerCount}</td>
-                    <td>{song.closerCount}</td>
-                    <td>{song.encoreCount}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : (
-          <p className={styles.empty}>No songs cached for this tour yet.</p>
-        )}
+        <SongHeatmap analysis={analysis} />
       </section>
 
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
-          <h2>Recent Setlist Changes</h2>
+          <h2>Song Position Chart</h2>
+          <p>
+            Tracks how frequently played songs move through the setlist across
+            shows.
+          </p>
+        </div>
+
+        <SongPositionChart analysis={analysis} />
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <h2>Song Stats</h2>
+          <p>Most frequently played songs on this cached tour.</p>
+        </div>
+
+        <SongStatsTable songStats={analysis.songStats} />
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <h2>Setlist Changes</h2>
           <p>Added, removed, and moved songs between adjacent shows.</p>
         </div>
 
-        {recentChanges.length > 0 ? (
-          <div className={styles.changeList}>
-            {recentChanges.map((change) => (
-              <article
-                className={styles.changeCard}
-                key={`${change.fromShowId}-${change.toShowId}`}
-              >
-                <h3>
-                  Show {change.fromShowIndex} → Show {change.toShowIndex}
-                </h3>
-
-                <div className={styles.changeGrid}>
-                  <div>
-                    <h4>Added</h4>
-                    {change.addedSongs.length > 0 ? (
-                      <ul>
-                        {change.addedSongs.map((song) => (
-                          <li key={song.songSlug}>{song.songName}</li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p>None</p>
-                    )}
-                  </div>
-
-                  <div>
-                    <h4>Removed</h4>
-                    {change.removedSongs.length > 0 ? (
-                      <ul>
-                        {change.removedSongs.map((song) => (
-                          <li key={song.songSlug}>{song.songName}</li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p>None</p>
-                    )}
-                  </div>
-
-                  <div>
-                    <h4>Moved</h4>
-                    {change.movedSongs.length > 0 ? (
-                      <ul>
-                        {change.movedSongs.slice(0, 5).map((song) => (
-                          <li key={song.songSlug}>
-                            {song.songName}: {song.fromPosition} →{" "}
-                            {song.toPosition}
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p>None</p>
-                    )}
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <p className={styles.empty}>
-            Not enough cached shows to compare changes yet.
-          </p>
-        )}
+        <SetlistChangesSummary changes={analysis.changes} />
       </section>
 
       <section className={styles.section}>

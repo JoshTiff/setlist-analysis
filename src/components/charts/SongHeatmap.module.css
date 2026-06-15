@@ -1,0 +1,65 @@
+.wrapper {
+  overflow: auto;
+  border: 1px solid #e1e1e1;
+  border-radius: 1rem;
+  background: #fff;
+}
+
+.heatmap {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+}
+
+.heatmap th,
+.heatmap td {
+  border-bottom: 1px solid #eee;
+  border-right: 1px solid #eee;
+  padding: 0.55rem;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.heatmap thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #fafafa;
+}
+
+.songHeader,
+.songName {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  min-width: 220px;
+  max-width: 220px;
+  text-align: left !important;
+  background: #fff;
+}
+
+.songHeader {
+  background: #fafafa !important;
+}
+
+.songName {
+  font-weight: 700;
+}
+
+.played {
+  color: #fff;
+  background: #111;
+  font-weight: 800;
+}
+
+.notPlayed {
+  background: #f4f4f4;
+}
+
+.empty {
+  border: 1px dashed #d0d0d0;
+  border-radius: 1rem;
+  padding: 1rem;
+  color: #666;
+  background: #fafafa;
+}

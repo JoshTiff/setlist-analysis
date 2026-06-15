@@ -1,0 +1,93 @@
+.wrapper {
+  border: 1px solid #e1e1e1;
+  border-radius: 1rem;
+  padding: 1rem;
+  background: #fff;
+  overflow-x: auto;
+}
+
+.chart {
+  display: block;
+  width: 100%;
+  min-width: 760px;
+}
+
+.axis {
+  stroke: #111;
+  stroke-width: 2;
+}
+
+.gridLine {
+  stroke: #e5e5e5;
+  stroke-width: 1;
+}
+
+.axisLabel,
+.tickLabel {
+  fill: #555;
+  font-size: 14px;
+}
+
+.line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+}
+
+.point {
+  fill: currentColor;
+}
+
+.series0 {
+  color: #111;
+}
+
+.series1 {
+  color: #555;
+}
+
+.series2 {
+  color: #8a4b08;
+}
+
+.series3 {
+  color: #2f5d50;
+}
+
+.series4 {
+  color: #5a4b81;
+}
+
+.series5 {
+  color: #8a2f4f;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  margin-top: 1rem;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.legendItem span {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.empty {
+  border: 1px dashed #d0d0d0;
+  border-radius: 1rem;
+  padding: 1rem;
+  color: #666;
+  background: #fafafa;
+}
