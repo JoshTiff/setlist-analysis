@@ -80,5 +80,3 @@ create index shows_event_date_idx on public.shows(event_date);
 create index songs_artist_mbid_idx on public.songs(artist_mbid);
 create index show_songs_show_setlistfm_id_idx on public.show_songs(show_setlistfm_id);
 create index show_songs_song_id_idx on public.show_songs(song_id);
-
-notify pgrst, 'reload schema';
