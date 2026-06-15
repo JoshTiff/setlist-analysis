@@ -1,0 +1,238 @@
+.page {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
+
+.hero {
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  color: #666;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.subtitle {
+  margin: 1rem 0 0;
+  color: #444;
+  font-size: 1.4rem;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.metaRow span {
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  color: #444;
+  background: #fafafa;
+  font-size: 0.9rem;
+}
+
+.refreshed {
+  margin-top: 1rem;
+  color: #666;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.card,
+.scoreCard {
+  border: 1px solid #e1e1e1;
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  background: #fff;
+}
+
+.scoreCard {
+  background: #111;
+  color: #fff;
+}
+
+.cardLabel {
+  margin: 0;
+  color: inherit;
+  opacity: 0.75;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.score {
+  margin: 0.75rem 0 0;
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.scoreText {
+  margin: 0.75rem 0 0;
+  font-size: 1.1rem;
+}
+
+.metric {
+  margin: 1rem 0 0;
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+
+.section {
+  margin-top: 2.5rem;
+}
+
+.sectionHeader {
+  margin-bottom: 1rem;
+}
+
+.sectionHeader h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.sectionHeader p {
+  margin: 0.35rem 0 0;
+  color: #666;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  border: 1px solid #e1e1e1;
+  border-radius: 1rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+  background: #fff;
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid #eee;
+  padding: 0.8rem 1rem;
+  text-align: left;
+}
+
+.table th {
+  color: #555;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: #fafafa;
+}
+
+.table tr:last-child td {
+  border-bottom: 0;
+}
+
+.changeList {
+  display: grid;
+  gap: 1rem;
+}
+
+.changeCard,
+.showCard {
+  border: 1px solid #e1e1e1;
+  border-radius: 1rem;
+  padding: 1rem;
+  background: #fff;
+}
+
+.changeCard h3,
+.showCard h3 {
+  margin: 0;
+}
+
+.changeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.changeGrid h4 {
+  margin: 0 0 0.5rem;
+}
+
+.changeGrid ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.changeGrid p {
+  margin: 0;
+  color: #777;
+}
+
+.showList {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0;
+  list-style-position: inside;
+}
+
+.showCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.showCard p {
+  margin: 0.35rem 0 0;
+  color: #666;
+}
+
+.showCard a {
+  flex: 0 0 auto;
+  color: #111;
+  font-weight: 800;
+}
+
+.empty {
+  border: 1px dashed #d0d0d0;
+  border-radius: 1rem;
+  padding: 1rem;
+  color: #666;
+  background: #fafafa;
+}
+
+@media (max-width: 800px) {
+  .page {
+    padding: 2rem 1rem 4rem;
+  }
+
+  .grid,
+  .changeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .showCard {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
